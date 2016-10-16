@@ -46,7 +46,9 @@ import { StockService } from './stock.service';
     ]
 })
 export class StocksComponent {
-
+  constructor(stockService: StockService) {
+        this.stocks = stockService.getStocks();
+    }
     isCenter = true;
     isColorBrown = false;
 
@@ -64,9 +66,7 @@ export class StocksComponent {
 
     errorMessage: String;
 
-    constructor(stockService: StockService) {
-        this.stocks = stockService.getStocks();
-    }
+
 
 
 }

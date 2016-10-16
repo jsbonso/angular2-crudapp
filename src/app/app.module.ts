@@ -14,12 +14,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {CurrencyService} from './currency.service';
 import {BondsDirective} from './bonds.directive';
-import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent, StocksComponent, HighlightDirective, StockDirectiveDirective, 
-    DateFormatterPipe, DashboardComponent, BondsDirective, AboutComponent
+    DateFormatterPipe, DashboardComponent, BondsDirective
   ],
   imports: [
     BrowserModule,
