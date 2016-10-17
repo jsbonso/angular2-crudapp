@@ -1,19 +1,51 @@
 
+<div class="m-x-auto p-a-2 m-t-2" style="width: 800px" *ngIf="updateEnabled">
+Stock Code: <input #updateStockCode [value]="selectedStock.stockCode"/>
+Stock Name: <input #updateName [value]="selectedStock.name"/>
+ <button type="button" class="btn btn-warning" (click)="updateStock(updateStockCode.value, updateName.value)">UPDATE</button>
+ </div>
+
+<div class="m-x-auto p-a-2" style="width: 900px">
+    <table class="table table-sm table-striped table-inverse table-hover center">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Stock Code</th>
+      <th>Stock Name</th>
+    </tr>
+    </thead>
+      <tr *ngFor="let stock of stocks">
+         <td> 
+           {{stock.id}} 
+         </td>
+         <td>
+           <button type="button" class="btn btn-warning" (click)="loadDetails(stock)">Update</button>
+           <button type="button" class="btn btn-danger" (click)="deleteStock(stock.id)">Delete</button>
+        </td>
+         <td> 
+           {{stock.stockCode}}
+         </td>
+         <td> 
+           {{stock.name}} 
+        </td>
+      </tr>
+    </table>
+ </div>
+
+<hr >
+
+<div class="p-a-2" >
+<h2>Add Stock</h2>
+Stock Code: <input #newStockCode />
+Stock Name: <input #newName />
+<button type="button" class="btn btn-primary" (click)="createStock(newStockCode.value, newName.value)">CREATE</button>
+</div>  
+
+
 <div class="jumbotron">
   <h1 class="display-3">Angular 2 Finance</h1>
   <p class="lead">Stocks, Bonds, Mutual Funds</p>
   <hr class="m-y-2">
   <p>A simple Angular 2 finance web application</p>
-
-
-    <ul>
-        <li *ngFor="let stock of stocks">
-           {{stock.id}} | {{stock.name}} | {{stock.stockCode}}
-        </li>
-    </ul>
-
-
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button" (click)="createStock()">START</a>
-  </p>
 </div>

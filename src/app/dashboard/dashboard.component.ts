@@ -11,6 +11,8 @@ export class DashboardComponent implements OnInit {
  
 
   stocks: string[];
+  selectedStock: any;
+  updateEnabled =false;
 
   ngOnInit() {
     this.getAllStocks();
@@ -30,9 +32,30 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  createStock(){
-    this.stockService.createStock().subscribe();
-    console.log('created');
+loadDetails(stock: any){
+  this.updateEnabled =true;
+  this.selectedStock = stock;
+  console.log('stock value: ' + stock.stockCode);
+
+
+}
+  createStock(newStockCode: string, newName: string){
+    
+    this.stockService.createStock(newStockCode, newName).subscribe();
+    location.reload();
+
+    
+  }
+
+  deleteStock(stockId: string){
+    this.stockService.deleteStock(stockId).subscribe();
+    location.reload();
+    
+  }
+
+  updateStock( newStockCode: string, newName: string){
+    this.stockService.updateStock(this.selectedStock.id, newStockCode, newName).subscribe();
+    location.reload();
     
   }
 }
