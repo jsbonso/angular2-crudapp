@@ -1,5 +1,9 @@
 # Angular2
 
+Sample CRUD Application for the Ultimate Angular 2 Developer Course in Udemy: https://www.udemy.com/ultimate-angular-2/ By Jon Bonso. 
+Run your local json-server first before running this application.
+
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.14.
 
 ## Development server
