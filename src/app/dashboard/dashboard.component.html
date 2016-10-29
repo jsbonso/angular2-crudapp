@@ -5,7 +5,7 @@
   <span *ngIf="updateEnabled" class="p-l-2">
     <label>Stock Code: <input #updateStockCode [value]="selectedStock.stockCode"/></label>
     <label>Stock Name: <input #updateName [value]="selectedStock.name"/></label>
-    <button type="button" class="btn btn-warning" (click)="updateStock(updateStockCode.value, updateName.value)">UPDATE</button>
+    <button type="button" class="btn btn-warning" (click)="updateStock(updateStockCode.value, updateName.value);updateEnabled=false">UPDATE</button>
   </span>
 </div>
 
