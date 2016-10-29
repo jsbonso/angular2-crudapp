@@ -1,51 +1,86 @@
-
-<div class="m-x-auto p-a-2 m-t-2" style="width: 800px" *ngIf="updateEnabled">
-Stock Code: <input #updateStockCode [value]="selectedStock.stockCode"/>
-Stock Name: <input #updateName [value]="selectedStock.name"/>
- <button type="button" class="btn btn-warning" (click)="updateStock(updateStockCode.value, updateName.value)">UPDATE</button>
- </div>
-
-<div class="m-x-auto p-a-2" style="width: 900px">
-    <table class="table table-sm table-striped table-inverse table-hover center">
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>Operations</th>
-      <th>Stock Code</th>
-      <th>Stock Name</th>
-    </tr>
-    </thead>
-      <tr *ngFor="let stock of stocks">
-         <td> 
-           {{stock.id}} 
-         </td>
-         <td>
-           <button type="button" class="btn btn-warning" (click)="loadDetails(stock)">Update</button>
-           <button type="button" class="btn btn-danger" (click)="deleteStock(stock.id)">Delete</button>
-        </td>
-         <td> 
-           {{stock.stockCode}}
-         </td>
-         <td> 
-           {{stock.name}} 
-        </td>
-      </tr>
-    </table>
- </div>
-
-<hr >
-
-<div class="p-a-2" >
-<h2>Add Stock</h2>
-Stock Code: <input #newStockCode />
-Stock Name: <input #newName />
-<button type="button" class="btn btn-primary" (click)="createStock(newStockCode.value, newName.value)">CREATE</button>
-</div>  
-
-
-<div class="jumbotron">
-  <h1 class="display-3">Angular 2 Finance</h1>
-  <p class="lead">Stocks, Bonds, Mutual Funds</p>
-  <hr class="m-y-2">
-  <p>A simple Angular 2 finance web application</p>
+<div class="p-a-2">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Add Stock 
+</button>
+  <span *ngIf="updateEnabled" class="p-l-2">
+    <label>Stock Code: <input #updateStockCode [value]="selectedStock.stockCode"/></label>
+    <label>Stock Name: <input #updateName [value]="selectedStock.name"/></label>
+    <button type="button" class="btn btn-warning" (click)="updateStock(updateStockCode.value, updateName.value)">UPDATE</button>
+  </span>
 </div>
+
+	<div class="m-x-auto p-a-2" style="width: 900px">
+		<table class="table table-sm table-striped table-inverse table-hover center">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Operations</th>
+					<th>Stock Code</th>
+					<th>Stock Name</th>
+				</tr>
+			</thead>
+			<tr *ngFor="let stock of stocks">
+				<td>
+					{{stock.id}}
+				</td>
+				<td>
+					<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal" (click)="loadDetails(stock)">Update</button>
+					<button type="button" class="btn btn-danger" (click)="deleteStock(stock.id)">Delete</button>
+				</td>
+				<td>
+					{{stock.stockCode}}
+				</td>
+				<td>
+					{{stock.name}}
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<hr>
+
+
+	<!-- Create Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+					<h4 class="modal-title" id="myModalLabel">Add a new Stock</h4>
+				</div>
+				<div class="modal-body">
+
+					<form>
+						<div class="form-group">
+							<label for="stockCode">Stock Code:</label>
+							<input #newStockCode type="text" class="form-control" id="stockCode" required>
+						</div>
+						<div class="form-group">
+							<label for="stockName">Stock Name:</label>
+							<input #newName type="text" class="form-control" id="stockName">
+						</div>
+
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" (click)="createStock(newStockCode.value, newName.value); newStockCode.value = ''; newName.value = '' "
+						data-dismiss="modal">Add Stock
+        </button>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="jumbotron">
+		<h1 class="display-3">Angular 2 Finance</h1>
+		<p class="lead">Stocks, Bonds, Mutual Funds</p>
+		<hr class="m-y-2">
+		<p>A simple Angular 2 finance web application</p>
+	</div>
